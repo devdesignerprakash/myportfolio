@@ -16,5 +16,5 @@ const fileFilter = (req, file, cb) => {
     cb(new Error("Only images are allowed"));
   }
 };
-
-module.exports = multer({ upload, fileFilter });
+const uploadImage= multer({ upload, fileFilter })
+module.exports = uploadImage;

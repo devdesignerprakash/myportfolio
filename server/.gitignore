@@ -1,0 +1,48 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Environment variable files
+.env
+.env.local
+.env.*.local
+
+# Build directories
+dist/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Temporary files
+*.tmp
+*.temp
+
+# Multer uploads or other local upload folders
+uploads/
+
+# Coverage directory (for test results)
+coverage/
+
+# Debugger configurations
+*.launch
+
+# Generated files
+*.lock
+*.cache
+
+# Git-specific files
+.git/

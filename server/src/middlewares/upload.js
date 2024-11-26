@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const upload = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "./uploads/"),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
@@ -16,5 +16,6 @@ const fileFilter = (req, file, cb) => {
     cb(new Error("Only images are allowed"));
   }
 };
-const uploadImage= multer({ upload, fileFilter })
+const upload= multer({storage, fileFilter })
+const uploadImage= upload.single('profilePicture')
 module.exports = uploadImage;

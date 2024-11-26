@@ -1,6 +1,6 @@
 const express = require('express')
 const profileControllers = require('../controllers/profileControllers')
-const uploadImage = require('../middlewares/upload')
+const uploadImages = require('../middlewares/upload')
 const router= express.Router()
-router.post('/admin',uploadImage,profileControllers.createAdmin)
+router.post('/admin',uploadImages,profileControllers.createAdmin)
 module.exports=router

@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const dotenv= require('dotenv')
+dotenv.config()
 const jwt = require("jsonwebtoken");
 const Profile = require("../schemas/profileSchema");
 const authenticateUser = async (email, password) => {

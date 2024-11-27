@@ -19,6 +19,6 @@ const fileFilter = (req, file, cb) => {
 const upload= multer({storage, fileFilter })
 const uploadFields = upload.fields([
   { name: "profilePicture", maxCount: 1 }, 
-  { name: "skills.image", maxCount: 1 },  
+  { name: "skills[]", maxCount: 1 },  
 ]);
 module.exports = uploadFields;

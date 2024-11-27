@@ -17,5 +17,8 @@ const fileFilter = (req, file, cb) => {
   }
 };
 const upload= multer({storage, fileFilter })
-const uploadImage= upload.single('profilePicture')
-module.exports = uploadImage;
+const uploadFields = upload.fields([
+  { name: "profilePicture", maxCount: 1 }, 
+  { name: "skills.image", maxCount: 1 },  
+]);
+module.exports = uploadFields;

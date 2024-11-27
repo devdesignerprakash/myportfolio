@@ -4,14 +4,16 @@ const bcrypt= require('bcrypt')
 
 class ProfileControllers{
     async createAdmin(req,res){
+        console.log(req)
 
         try{
             const existAdmin= await Profile.findOne({email:req.body.email})
             if(!existAdmin){
+                console.log(req.files)
                 const {password,...otherData}= req.body
                 const hashedPassword= await bcrypt.hashSync(password,10)
                 const profilePicture = req.file ? req.file.filename : "default-profile.png";
-                const skillImage= req.file?req.file.name:"default-profile.png"
+                // const skillImage= req.file?req.file.name:"default-profile.png"
                 const newAdmin= await ProfileServices.createAdmin({...otherData, password:hashedPassword, profilePicture})
                 res.status(200).json({
                     msg:"Admin Created Successfully",

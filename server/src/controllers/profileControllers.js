@@ -1,4 +1,5 @@
-const Profile = require('../schemas/profileSchema')
+const Profile = require('../schemas/profileSchema');
+const profileServices = require('../services/profileServices');
 const ProfileServices=require('../services/profileServices')
 const bcrypt= require('bcrypt')
 
@@ -10,7 +11,7 @@ class ProfileControllers{
             if (!existAdmin) {
                 const { password, skills, ...otherData } = req.body;
                 const hashedPassword = await bcrypt.hashSync(password, 10);
-        
+    
                 const profilePicture = req.files && req.files.profilePicture ? req.files.profilePicture[0].filename : "default-profile.png";
                 const newAdmin = await ProfileServices.createAdmin({
                     ...otherData,
@@ -30,7 +31,24 @@ class ProfileControllers{
             res.status(500).json({ msg: "Server error", error });
         }
     }
-    async getSkills(req,res){
+    async getProfiles(req,res){
+        try{
+            const profile= await profileServices.getProfiles()
+            if(profile.length!==0){
+                res.status(200).json({
+                    data:profile
+                })
+            }
+            else{
+                res.status(400).json({
+                    msg:"No any profile found"
+                })
+            }
+
+        }catch(error){
+            console.error(error);
+            res.status(500).json({msg:"Server Error",error})
+        }
         
     }
 }

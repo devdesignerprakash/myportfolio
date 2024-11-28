@@ -4,8 +4,6 @@ const bcrypt= require('bcrypt')
 
 class ProfileControllers{
     async createAdmin(req,res){
-        console.log(req)
-        console.req.body
         try {
             const existAdmin = await Profile.findOne({ email: req.body.email });
         
@@ -14,22 +12,10 @@ class ProfileControllers{
                 const hashedPassword = await bcrypt.hashSync(password, 10);
         
                 const profilePicture = req.files && req.files.profilePicture ? req.files.profilePicture[0].filename : "default-profile.png";
-        
-                let skillsWithImages = [];
-                if (req.files && req.files['skills.image']) {
-        
-                    skillsWithImages = skills.map((skill, index) => {
-                  
-                        const skillImage = req.files['skills.image'][index] ? req.files['skills.image'][index].filename : "default-skill.png";
-                        return { ...skill, image: skillImage }; l
-                    });
-                }
-        
                 const newAdmin = await ProfileServices.createAdmin({
                     ...otherData,
                     password: hashedPassword,
                     profilePicture,
-                    skills: skillsWithImages,  
                 });
         
                 res.status(200).json({
@@ -44,7 +30,9 @@ class ProfileControllers{
             res.status(500).json({ msg: "Server error", error });
         }
     }
-    
+    async getSkills(req,res){
+        
+    }
 }
 
 module.exports= new ProfileControllers()

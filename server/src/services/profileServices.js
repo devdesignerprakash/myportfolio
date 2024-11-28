@@ -7,5 +7,9 @@ class ProfileServices{
     async getProfiles(){
         return await Profile.find()
     }
+    async changePassword(id,updatedPassword){
+        return await Profile.findOneAndUpdate({id},updatedPassword, {new:true})
+
+    }
 }
 module.exports=new ProfileServices()

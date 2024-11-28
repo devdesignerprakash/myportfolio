@@ -51,6 +51,37 @@ class ProfileControllers{
         }
         
     }
+    async changePassword(req,res){
+        try{
+            const{id}=req.params
+            const existprofile= Profile.findOne({_id:id})
+            if(existprofile){
+                const {oldPassword,newPassword}=req.body
+                const oldPasswordMatch= await bcrypt.compare(oldPassword,Profile.password)
+                if(oldPasswordMatch){
+                    const changedPassword=bcrypt.hashSync(newPassword,10)
+                    const passwordChanged= await ProfileServices.changePassword(id,changedPassword)
+                    res.status(200).json({
+                        msg:"password changed successfully",
+                        passwordChanged
+                    })
+                }else{
+                    res.status(400).json({
+                        msg:"old password don't match"
+                    })
+                }
+            }
+            else{
+                res.status(400).json({
+                    msg:"No any profile found"
+                })
+            }
+        }catch(error){
+            console.error(error);
+            res.status(500).json({msg:"Server Error",error})
+        }
+        
+    }
 }
 
 module.exports= new ProfileControllers()

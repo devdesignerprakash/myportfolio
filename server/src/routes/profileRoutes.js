@@ -1,8 +1,11 @@
 const express = require('express')
 const profileControllers = require('../controllers/profileControllers')
 const uploadFields = require('../middlewares/upload')
+const { loginController } = require('../controllers/authControllers')
+const verifyToken = require('../middlewares/authorization')
 const router= express.Router()
 router.post('/admin',uploadFields,profileControllers.createAdmin)
 router.get('/profile',profileControllers.getProfiles)
-router.patch('/change-password/:id',profileControllers.changePassword)
+router.patch('/change-password/:id',verifyToken,profileControllers.changePassword)
+router.post('/login',loginController) 
 module.exports=router

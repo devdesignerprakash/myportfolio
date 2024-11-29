@@ -54,12 +54,15 @@ class ProfileControllers{
     async changePassword(req,res){
         try{
             const{id}=req.params
-            const existprofile= Profile.findOne({_id:id})
-            if(existprofile){
+            
+            const existProfile= await Profile.findOne({_id:id})
+            if(existProfile){
                 const {oldPassword,newPassword}=req.body
-                const oldPasswordMatch= await bcrypt.compare(oldPassword,Profile.password)
-                if(oldPasswordMatch){
-                    const changedPassword=bcrypt.hashSync(newPassword,10)
+                const isOldPasswordMatch= await bcrypt.compare(oldPassword,existProfile.password)
+              console.log(isOldPasswordMatch)
+                if(isOldPasswordMatch){
+                    const changedPassword= await bcrypt.hashSync(newPassword,10)
+                    console.log(changedPassword)
                     const passwordChanged= await ProfileServices.changePassword(id,changedPassword)
                     res.status(200).json({
                         msg:"password changed successfully",

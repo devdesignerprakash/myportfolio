@@ -8,6 +8,7 @@ const Page = () => {
         Navigate('/home')
     }
   return (
+    <>
 <motion.button
 onClick={handleClick}
   initial={{ opacity: 0, scale: 0.8 }}
@@ -18,6 +19,12 @@ onClick={handleClick}
 >
   Go to Home
 </motion.button>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <button class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition">
+    Click Me
+  </button>
+</div>
+</>
   )
 }
 

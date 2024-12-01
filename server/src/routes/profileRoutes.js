@@ -8,4 +8,5 @@ router.post('/admin',uploadFields,profileControllers.createAdmin)
 router.get('/profile',profileControllers.getProfiles)
 router.patch('/change-password/:id',verifyToken,profileControllers.changePassword)
 router.post('/login',loginController) 
+router.patch('/change-profilePicture',profileControllers.changeProfilePicture)
 module.exports=router

@@ -7,7 +7,6 @@ class ProfileControllers {
   async createAdmin(req, res) {
     try {
       const existAdmin = await Profile.findOne({ email: req.body.email });
-
       if (!existAdmin) {
         const { password, skills, ...otherData } = req.body;
         const hashedPassword = await bcrypt.hashSync(password, 10);
@@ -61,7 +60,7 @@ class ProfileControllers {
           oldPassword,
           existProfile.password
         );
-        console.log(isOldPasswordMatch);
+
         if (isOldPasswordMatch) {
           const changedPassword = await bcrypt.hashSync(newPassword, 10);
           console.log(changedPassword);
@@ -88,6 +87,31 @@ class ProfileControllers {
       res.status(500).json({ msg: "Server Error", error });
     }
   }
+  async changeProfilePicture(){
+    try{
+      const { id } = req.params;
+      const existProfile = await Profile.findOne({ _id: id });
+      if(existProfile){
+        const profilePicture =
+          req.files && req.files.profilePicture
+            ? req.files.profilePicture[0].filename:"default-profile.png";
+            const changeProfilePicture=await profileServices.changeProfilePicture(id,profilePicture)
+            res.status(200).json({
+              msg:"Profile Picture Changed Successfully",
+              changeProfilePicture
+            })
+      }
+      else {
+        res.status(400).json({
+          msg: "No any profile found",
+        });
+      }
+    }catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Server Error", error });
+    }
+  }
+
 }
 
 module.exports = new ProfileControllers();

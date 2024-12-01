@@ -8,8 +8,11 @@ class ProfileServices{
         return await Profile.find()
     }
     async changePassword(id,updatedPassword){
-        console.log(id,updatedPassword)
         return await Profile.findOneAndUpdate({_id:id},{password:updatedPassword}, {new:true})
+    }
+    async changeProfilePicture(id,updatedProfile){
+        console.log(id,updatedProfile)
+        return await Profile.findOneAndUpdate({_id:id},{profilePicture:updatedProfile}, {new:true})
     }
 }
 module.exports=new ProfileServices()

@@ -1,11 +1,10 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
+import { Link, Element } from "react-scroll";
 
 const HomePage = () => {
   return (
-   <>
-   <Navbar/>
-   </>
+
+ <> Home page</>
   )
 }
 

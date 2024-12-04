@@ -1,12 +1,11 @@
-import "./App.css";
-import HomePage from "./pages/HomePage";
-import Page from "./components/page";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import './app.scss'
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div>
-    <section>Navbar</section>
+    <section><Navbar/></section>
     <section>Home</section>
     <section>Skills</section>
     <section>Projects</section>

@@ -1,0 +1,26 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color:black;
+    .bg{
+        position:fixed;
+        top:0;
+        left:0;
+        background-color: white;
+        max-width: 400px;
+        .links{
+
+        }
+        button{
+            width:50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+    }
+
+   
+}

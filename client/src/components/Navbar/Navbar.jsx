@@ -1,10 +1,11 @@
+import Sidebar from "../sidebar/Sidebar";
 import "./navbar.scss"
 import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 function Navbar() {
   return (
   <>
   <div className="navbar">
-   {/* sidebar */}
+<Sidebar/>
     <div className="wrapper">
       <span>Prakash Tech</span>
       <div className="social">

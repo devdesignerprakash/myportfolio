@@ -1,8 +1,11 @@
 import React from 'react'
+import { FaBars, FaTimes } from "react-icons/fa";
 
-const ToggleButton = () => {
+const ToggleButton = ({open, setOpen}) => {
   return (
-    <button>T</button>
+    <button onClick={()=>setOpen((prev)=>!prev)}>
+      {open ? <FaTimes size={24} /> : <FaBars size={24} />}
+    </button>
   )
 }
 

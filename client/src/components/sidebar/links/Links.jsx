@@ -1,10 +1,9 @@
 import React from 'react'
-import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
-
 const Links = () => {
+  const items= ["HomePage", "Projects", "About Me", "Contacts"];
   return (
     <div className='links'>
-      Links
+      {items.map((item)=>(<a href={`#${item}`} key={item}>{item}</a>))} 
     </div>
   )
 }
